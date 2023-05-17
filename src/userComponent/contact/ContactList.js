@@ -13,11 +13,11 @@ let ContactList = () => {
                             <div className='row'>
                                 <div className='col'>
                                     <p className='h3 fw-bold'>Harry Potter fans
-                                        <Link to={'contact/add'} className='btn btn-primary ms-2'>
+                                        <Link to={'add'} className='btn btn-primary ms-2'>
                                             <i className='fa fa-plus-circle me-2' />New
                                         </Link>
                                     </p>
-                                    <p className='fst-italic'>Add your favorite character
+                                    <p className='fst-italic'>Your favorite character
                                     </p>
                                 </div>
                             </div>
@@ -68,10 +68,10 @@ let ContactList = () => {
                                           </ul>
                                         </div>
                                         <div className='col-md-1 d-flex flex-column align-items-center '>
-                                            <Link to={'contact/add'} className='btn btn-warning my-1'>
+                                            <Link to={'view'} className='btn btn-warning my-1'>
                                                 <i className='fa fa-eye' />
                                             </Link>
-                                            <Link to={'contact/edit'} className='btn btn-primary my-1'>
+                                            <Link to={'edit'} className='btn btn-primary my-1'>
                                                 <i className='fa fa-pen' />
                                             </Link>
                                            <button className='btn btn-danger my-1'>
