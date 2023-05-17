@@ -10,8 +10,11 @@ import Cart from "./pages/cart/Cart";
 import Account from './pages/account/Account';
 import Favorite from './pages/favorite/Favorite';
 import  Header  from './components/header/Header';
-import Footer from './components/footer/Footer'
-
+import Footer from './components/footer/Footer';
+import AddComponent from './userComponent/addComponent/AddComponent';
+import Contact from './userComponent/contact/ContactList';
+import EditComponent from './userComponent/editComponent/EditComponent';
+import ViewComponent from './userComponent/viweComponent/ViewComponent';
 function App() {
 
   return (
@@ -30,6 +33,11 @@ function App() {
         <Route path='cart' element={<Cart/>}/>
         <Route path='favorite' element={<Favorite />}/>
         <Route path='account' element={<Account/>}/>
+        <Route path='contact' element={<Contact/>}/>
+        <Route path='contact/add' element={<AddComponent />}/>
+        <Route path='contact/view' element={<ViewComponent/>}/>
+        <Route path='contact/edit' element={<EditComponent/>}/>
+       
       </Routes>
     <Footer/>
    

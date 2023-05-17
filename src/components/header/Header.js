@@ -23,7 +23,7 @@ function Header() {
             <Nav.Link href="movies">Movies</Nav.Link>
             <Nav.Link href="places">Place To Visit</Nav.Link>
             <Nav.Link href="quiz">Quiz</Nav.Link>
-           
+            <Nav.Link href="contact">Users</Nav.Link>
            
           </Nav>
           <Nav>
