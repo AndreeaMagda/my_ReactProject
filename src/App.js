@@ -1,7 +1,7 @@
 
 import {Routes,Route} from 'react-router-dom'
 //pages
-import { Account, Admin, Books, Cart,Favorite,Home,Movies,PlaceToVisit,Quiz,Shop} from './pages/index'
+import { Account, Admin, Books, Cart,Favorite,Home,Movies,PlaceToVisit,Quiz,Shop, OderHistory, Login, Register,Reset} from './pages/index'
 //components
 import { Header, Footer } from './components/index';
 
@@ -12,7 +12,7 @@ function App() {
   
     <Header/>
       <Routes>
-         <Route path='home' element={<Home />}/>
+         <Route path='/' element={<Home />}/>
        
         <Route path='books' element={<Books />}/>
        
@@ -23,6 +23,12 @@ function App() {
         <Route path='cart' element={<Cart/>}/>
         <Route path='favorite' element={<Favorite />}/>
         <Route path='account' element={<Account/>}/>
+        <Route path='oderHistory' element={<OderHistory/>}/>
+        <Route path='admin' element={<Admin/>}/>
+        <Route path='login' element={<Login/>}/>
+        <Route path='register' element={<Register/>}/>
+        <Route path='reset' element={<Reset/>}/>
+
        
        
       </Routes>
