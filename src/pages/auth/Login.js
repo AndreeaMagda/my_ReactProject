@@ -7,13 +7,13 @@ const Login = () => {
     return (
         <React.Fragment>
             <section className='login'>
-                <div className='container'>
+                <div className='container mt-4'>
                     <div className='grid'>
                         <div className='row'>
                             <div className='col ms-2'>
                                 <img  className='img-thumbnail'   src={loginImg} alt="errimglg " width="400" />
                             </div>
-                            <div className='col'>
+                            <div className='col card border-danger mb-3'>
                                 <h2 className='text-center text-danger'>Login </h2>
                                 <form>
                                     <div class="form-group">
@@ -26,7 +26,7 @@ const Login = () => {
                                         <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                                     </div>
                                   
-                                    <button type="submit" class="btn btn-lmd btn-primary btn-block">Submit</button>
+                                    <button type="submit" className="btn btn-lmd btn-primary btn-block ">Submit</button>
                                     <Link to='/reset'>Reset Password</Link>
                                     <p className='text-center font-weight-bold'>---or---</p>
                                     <button type="google" className="btn btn-lmd btn-info btn-block"><FaGoogle color='#000'/>Login with  Google</button>
