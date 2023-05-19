@@ -13,7 +13,7 @@ import {BiHistory} from 'react-icons/bi'
 import  styles from './Header.module.scss'
 
 
-const activeLink=({isActive})=>(isActive ? $(styles.active):"")
+const activeLink=({isActive})=>(isActive ? `$(styles.active)`:"")
 
 function Header() {
   return (
@@ -31,13 +31,13 @@ function Header() {
             <Nav.Link href="quiz">Quiz</Nav.Link>
              
           </Nav>
-          <Nav>
-          <Nav.Link href="login" ><p> Login</p> </Nav.Link>
-          <Nav.Link href="register" ><p> Register</p> </Nav.Link>
+          <Nav  >
+          <Nav.Link href="login" > Login</Nav.Link>
+          <Nav.Link href="register" > Register </Nav.Link>
           </Nav>
           <Nav >
             
-            <Nav.Link href="cart"><BsFillHandbagFill size={30}  className='flex'/><p>0</p></Nav.Link>
+            <Nav.Link href="cart"><BsFillHandbagFill size={30}  /><p>0</p></Nav.Link>
             <Nav.Link eventKey={2} href="favorite"> <img src={favImg} alt='fav-icon-error'/> </Nav.Link>
             <Nav.Link eventKey={2} href="account"> <img src={accImg} alt='acc-icon-error'/> </Nav.Link>
             
