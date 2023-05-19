@@ -10,10 +10,10 @@ const Login = () => {
                 <div className='container mt-4'>
                     <div className='grid'>
                         <div className='row'>
-                            <div className='col ms-2'>
+                            <div className='col '>
                                 <img  className='img-thumbnail'   src={loginImg} alt="errimglg " width="400" />
                             </div>
-                            <div className='col card border-danger mb-3'>
+                            <div className='col card border-danger mb-2'>
                                 <h2 className='text-center text-danger'>Login </h2>
                                 <form>
                                     <div class="form-group">
