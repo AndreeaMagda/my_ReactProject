@@ -1,25 +1,50 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { Link } from 'react-router-dom'
-import { FaGoogle } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
 import registerImg from '../../Images//registerImg.jpeg'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
+import {auth} from '../../firebase/config'
+import { Loader } from 'semantic-ui-react';
+import  {loader} from '../../components/loader/Loader'
 
 const Register = () => {
   const [email, setEmail] = useState("")
-  const [passowrd, setPassword] = useState("")
+  const [password, setPassword] = useState("")
   const [cPassword, setCPassword] = useState("")
+  const [isLoading, setIsLoading] = useState("")
+
+const navigate=useNavigate()
 
   const registerUser=(e)=>{
     e.preventDefault();
-    if(passowrd !=cPassword){
-       toast.error("Passowrd not match.")
+    if(password !=cPassword){
+       toast.error("Password not match.")
     }
+
+   setIsLoading(true) 
+   
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+  
+    const user = userCredential.user;
+    console.log(user);
+    setIsLoading(false)
+    toast.success("Registration successful...")
+    navigate("/login ")
+    
+  })
+  .catch((error) => {
+   
+   toast.error(error.message)
+   setIsLoading(false)
+  });
   }
 
   return (
     <React.Fragment>
+        <ToastContainer />
+        {isLoading && <Loader/>}
       <section className='login'>
         <div className='container  mt-4 mt-4'>
           <div className='grid'>
@@ -41,7 +66,7 @@ const Register = () => {
                     <input type="password" 
                     className="form-control" id="exampleInputPassword1"
                      placeholder="Password" 
-                     required value={passowrd}
+                     required value={password}
                      onChange={(e) =>setPassword(e.target.value)} />
                   </div>
                   <div className="form-group">
