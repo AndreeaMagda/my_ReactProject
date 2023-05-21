@@ -6,7 +6,7 @@ import registerImg from '../../Images//registerImg.jpeg'
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import {auth} from '../../firebase/config'
 import { Loader } from 'semantic-ui-react';
-import  {loader} from '../../components/loader/Loader'
+//import  {Loader} from '../../components/loader/Loader'
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -61,7 +61,7 @@ createUserWithEmailAndPassword(auth, email, password)
                       onChange={(e) =>setEmail(e.target.value)} />
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" 
                     className="form-control" id="exampleInputPassword1"
@@ -79,7 +79,7 @@ createUserWithEmailAndPassword(auth, email, password)
                   </div>
 
                   <button type="submit" className="btn btn-lmd btn-primary btn-block ">Submit</button>
-                  <Link to='/login'>Alrrady an account? Login </Link>
+                  <Link to='/login'>Already have an account? Login </Link>
 
                 </form>
               </div>
