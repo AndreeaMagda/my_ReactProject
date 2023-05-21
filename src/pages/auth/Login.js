@@ -6,6 +6,8 @@ import { FaGoogle } from 'react-icons/fa'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebase/config'
 import { toast } from 'react-toastify'
+import Loader from '../../components/loader/Loader'
+
 
 const Login = () => {
 
