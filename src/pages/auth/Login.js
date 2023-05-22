@@ -3,7 +3,7 @@ import styles from './auth.modules.scss'
 import loginImg from '../../Images/loginImg.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from '../../firebase/config'
 import { toast } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
@@ -19,6 +19,7 @@ const Login = () => {
 
 
     const loginUser = (e) => {
+
         e.preventDefault()
         setIsLoading(true)
 
@@ -36,7 +37,26 @@ const Login = () => {
                 toast.error(error.message)
             });
 
-    };
+  
+    }
+
+     //login with google
+   const provider = new GoogleAuthProvider();
+   const signInWithGoogle =()=>{
+       signInWithPopup(auth, provider)
+       .then((result) => {
+         const user = result.user;
+         toast.success("login successfully")
+         navigate("/home")
+        
+       }).catch((error) => {
+        toast.error(error.message)
+       });
+       
+       
+       
+       
+        };
     return (
         <React.Fragment>
             {isLoading && <Loader/>}
@@ -67,7 +87,7 @@ const Login = () => {
                                     <button type="submit" className="btn btn-lmd btn-primary btn-block ">Submit</button>
                                     <Link to='/reset'>Reset Password</Link>
                                     <p className='text-center font-weight-bold'>---or---</p>
-                                    <button type="google" className="btn btn-lmd btn-info btn-block"><FaGoogle color='#000' />Login with  Google</button>
+                                    <button type="google" className="btn btn-lmd btn-info btn-block" onClick={signInWithGoogle}><FaGoogle color='#000' />Login with  Google</button>
                                     <p> Don't have an account?<Link to={'/register'}>register here</Link></p>
                                 </form>
                             </div>
