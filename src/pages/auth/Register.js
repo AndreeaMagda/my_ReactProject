@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {  toast } from 'react-toastify';
+
 import { Link, useNavigate } from 'react-router-dom'
 import registerImg from '../../Images//registerImg.jpeg'
 import {createUserWithEmailAndPassword} from 'firebase/auth'
@@ -18,7 +18,7 @@ const navigate=useNavigate()
 
   const registerUser=(e)=>{
     e.preventDefault();
-    if(password !=cPassword){
+    if(password !== cPassword){
        toast.error("Password not match.")
     }
 
@@ -43,7 +43,7 @@ createUserWithEmailAndPassword(auth, email, password)
 
   return (
     <React.Fragment>
-        <ToastContainer />
+       
         {isLoading && <Loader/>}
       <section className='login'>
         <div className='container  mt-4 mt-4'>

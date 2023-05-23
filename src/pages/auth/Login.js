@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth } from '../../firebase/config'
-import { toast } from 'react-toastify'
+import {ToastContainer, toast } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
 
 
@@ -32,7 +32,7 @@ const Login = () => {
                 navigate('/home')
 
             })
-            .catch((error) => {
+            .catch((error) => { 
                 setIsLoading(false)
                 toast.error(error.message)
             });
@@ -59,6 +59,7 @@ const Login = () => {
         };
     return (
         <React.Fragment>
+             <ToastContainer />
             {isLoading && <Loader/>}
             <section className='login'>
                 <div className='container mt-4'>

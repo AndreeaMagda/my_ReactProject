@@ -1,7 +1,6 @@
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import 'semantic-ui-css/semantic.min.css';
@@ -9,13 +8,26 @@ import imgLogo from '../../Images/logo.png'
 import favImg from'../../Images/fav.svg'
 import accImg from '../../Images/acc.svg'
 import {BsFillHandbagFill} from 'react-icons/bs'
-import {BiHistory} from 'react-icons/bi'
-import  styles from './Header.module.scss'
+import {  signOut } from "firebase/auth";
+import { auth } from '../../firebase/config';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
-const activeLink=({isActive})=>(isActive ? `$(styles.active)`:"")
 
 function Header() {
+
+
+  const activeLink=({isActive})=>(isActive ? `$(styles.active)`:"")
+const navigate=useNavigate();
+const logoutUser=()=>{
+  signOut(auth).then(() => {
+    toast.success("Logout successfully...")
+    navigate("/home")
+  }).catch((error) => {
+    toast.error(error.message);
+  });
+};
   return (
     <>
          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -34,6 +46,7 @@ function Header() {
           <Nav  >
           <Nav.Link href="login" > Login</Nav.Link>
           <Nav.Link href="register" > Register </Nav.Link>
+          <Nav.Link href="/home" onClick={logoutUser} >Logout </Nav.Link>
           </Nav>
           <Nav >
             
