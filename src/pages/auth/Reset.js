@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import resetImg from '../../Images/resetImg.jpg'
-import { Link, useNavigate } from 'react-router-dom'
-import { FaGoogle } from 'react-icons/fa'
+import { Link} from 'react-router-dom'
 import {  sendPasswordResetEmail} from "firebase/auth";
 import { auth } from '../../firebase/config'
 import {ToastContainer, toast } from 'react-toastify'

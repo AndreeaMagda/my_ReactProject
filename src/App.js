@@ -4,7 +4,7 @@ import {Routes,Route} from 'react-router-dom'
 import { Account, Admin, Books, Cart,Favorite,Home,Movies,PlaceToVisit,Quiz,Shop, OderHistory, Login, Register,Reset} from './pages/index'
 //components
 import { Header, Footer } from './components/index';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
