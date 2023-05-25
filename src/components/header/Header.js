@@ -13,7 +13,9 @@ import { auth } from '../../firebase/config';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
+ 
 
 
 function Header() {
@@ -21,15 +23,22 @@ function Header() {
   const[displayName,setdisplayName]=useState("")
   const activeLink = ({ isActive }) => (isActive ? `$(styles.active)` : "")
   const navigate = useNavigate();
+
+const dispatch=useDispatch()
+
 //monitor curently sign in user
 useEffect(()=>{
   onAuthStateChanged(auth, (user) => {
     if (user) {
-     
-      const uid = user.uid;
+      //const uid = user.uid;
 
-      console.log();
+      console.log(user);
       setdisplayName(user.displayName)
+      dispatch(SET_ACTIVE_USER({
+        emai:"",
+        userName:"",
+        userID:""
+      }))
      
     } else {
       setdisplayName("")
