@@ -44,16 +44,16 @@ createUserWithEmailAndPassword(auth, email, password)
   return (
     <React.Fragment>
        
-        {isLoading && <Loader/>}
       <section className='login'>
+      
         <div className='container  mt-4 mt-4'>
           <div className='grid'>
             <div className='row'>
               <div className='col card border-danger mb-2 center'>
                 <h2 className='text-center text-danger'>Register </h2>
                 <form onSubmit={registerUser}>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                  <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
                     <input type="email"
                       className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                       placeholder="Enter email"
@@ -62,7 +62,7 @@ createUserWithEmailAndPassword(auth, email, password)
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                   </div>
                   <div className="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label htmlFor="exampleInputPassword1">Password</label>
                     <input type="password" 
                     className="form-control" id="exampleInputPassword1"
                      placeholder="Password" 
@@ -70,9 +70,9 @@ createUserWithEmailAndPassword(auth, email, password)
                      onChange={(e) =>setPassword(e.target.value)} />
                   </div>
                   <div className="form-group">
-                    <label for="exampleInputPassword1"> Confirm Password</label>
+                    <label htmlFor="exampleInputPassword1"> Confirm Password</label>
                     <input type="password" 
-                    className="form-control" id="exampleInputPassword1"
+                    className="form-control" id="exampleInputPassword2"
                      placeholder="Password"
                      required value={cPassword}
                      onChange={(e) =>setCPassword(e.target.value)} />
@@ -82,7 +82,9 @@ createUserWithEmailAndPassword(auth, email, password)
                   <Link to='/login'>Already have an account? Login </Link>
 
                 </form>
+
               </div>
+              {/* {isLoading && <Loader/>} */}
               <div className='col xs={12}'>
                 <img className='img-thumbnail' src={registerImg} alt="errimglg " width="400" />
               </div>

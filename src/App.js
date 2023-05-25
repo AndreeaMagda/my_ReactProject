@@ -29,10 +29,7 @@ function App() {
         <Route path='admin' element={<Admin/>}/>
         <Route path='login' element={<Login/>}/>
         <Route path='register' element={<Register/>}/>
-        <Route path='reset' element={<Reset/>}/>
-
-       
-       
+        {/* <Route path='reset' element={<Reset/>}/> */}
       </Routes>
     <Footer/>
    
