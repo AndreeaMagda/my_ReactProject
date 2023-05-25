@@ -84,7 +84,8 @@ createUserWithEmailAndPassword(auth, email, password)
                 </form>
 
               </div>
-              {/* {isLoading && <Loader/>} */}
+              {isLoading && <Loader/>}
+              
               <div className='col xs={12}'>
                 <img className='img-thumbnail' src={registerImg} alt="errimglg " width="400" />
               </div>
