@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styles from './auth.modules.scss'
 import loginImg from '../../Images/loginImg.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
@@ -27,7 +26,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
 
-                const user = userCredential.user;
+               // const user = userCredential.user;
                 setIsLoading(false)
                 toast.success("Login successful :)")
                 navigate('/home')
@@ -46,7 +45,7 @@ const Login = () => {
    const signInWithGoogle =()=>{
        signInWithPopup(auth, provider)
        .then((result) => {
-         const user = result.user;
+        // const user = result.user;
          toast.success("login successfully")
          navigate("/home")
         

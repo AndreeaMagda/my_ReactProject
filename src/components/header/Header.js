@@ -14,8 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
-
+import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../redux/slice/authSlice';
 
 
 function Header() {
@@ -30,14 +29,11 @@ function Header() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        //const uid = user.uid;
         if (user.displayName == null) {
           const u1 = user.email.substring(0,user.email.indexOf("@"));
           const uName=u1.charAt(0).toLocaleUpperCase()+u1.slice(1)
-        // console.log(uName);
           setdisplayName(uName)
         } else{
-       // console.log(user.displayName);
       setdisplayName(user.displayName)
 }
 
@@ -50,9 +46,10 @@ function Header() {
 
       } else {
         setdisplayName("")
+        dispatch(REMOVE_ACTIVE_USER())
       }
     });
-  }, [])
+  }, [dispatch, displayName])
 
 
   const logoutUser = () => {
@@ -89,7 +86,7 @@ function Header() {
               <Nav.Link href="cart"><BsFillHandbagFill size={30} /><p>0</p></Nav.Link>
               <Nav.Link eventKey={2} href="favorite"> <img src={favImg} alt='fav-icon-error' /> </Nav.Link>
               {/* <Nav.Link eventKey={2} href="account"> <img src={accImg} alt='acc-icon-error' /> </Nav.Link> */}
-              <a href='#'>
+              <a href='#home'>
                 <img src={accImg} alt='acc-icon-error' sizes='16' />
                 Hi, {displayName}
               </a>
