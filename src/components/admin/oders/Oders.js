@@ -3,7 +3,7 @@ import React from 'react'
 const Oders = () => {
   return (
     <div>
-      
+      oder
     </div>
   )
 }

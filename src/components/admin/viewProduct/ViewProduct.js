@@ -1,11 +1,12 @@
 import React from 'react'
 
-const ViewProducts = () => {
+
+const ViewProduct= () => {
   return (
     <div>
-      
+     vew
     </div>
   )
 }
 
-export default ViewProducts
+export default ViewProduct
