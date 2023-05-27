@@ -25,7 +25,7 @@ REMOVE_ACTIVE_USER(state,action){
     state.userName=null;
     state.email=null;
     state.userID=null;
-    console.log(state.isLoggedIn);
+   
 }
 
   },

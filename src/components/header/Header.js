@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../redux/slice/authSlice';
+import ShowOnLogin, { ShowOnLogout } from '../hiddenLink/hiddenLink';
 
 
 function Header() {
@@ -76,20 +77,25 @@ function Header() {
 
             </Nav>
             <Nav  >
+              <ShowOnLogout>
               <Nav.Link href="login" > Login</Nav.Link>
-
-              <Nav.Link href="register" > Register </Nav.Link>
+              </ShowOnLogout>
+              <ShowOnLogin>
               <Nav.Link href="/home" onClick={logoutUser} >Logout </Nav.Link>
+              </ShowOnLogin>
             </Nav>
             <Nav >
-
+              
               <Nav.Link href="cart"><BsFillHandbagFill size={30} /><p>0</p></Nav.Link>
+              <ShowOnLogin>
               <Nav.Link eventKey={2} href="favorite"> <img src={favImg} alt='fav-icon-error' /> </Nav.Link>
+              
               {/* <Nav.Link eventKey={2} href="account"> <img src={accImg} alt='acc-icon-error' /> </Nav.Link> */}
-              <a href='#home'>
+              <a href='#home' style={{color: "#ff7722"}}>
                 <img src={accImg} alt='acc-icon-error' sizes='16' />
                 Hi, {displayName}
               </a>
+              </ShowOnLogin>
 
 
             </Nav>
