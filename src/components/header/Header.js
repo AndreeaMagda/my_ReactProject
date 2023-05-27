@@ -15,36 +15,44 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
- 
+
 
 
 function Header() {
 
-  const[displayName,setdisplayName]=useState("")
+  const [displayName, setdisplayName] = useState("")
   const activeLink = ({ isActive }) => (isActive ? `$(styles.active)` : "")
   const navigate = useNavigate();
 
-const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
-//monitor curently sign in user
-useEffect(()=>{
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      //const uid = user.uid;
-
-      console.log(user);
+  //monitor curently sign in user
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        //const uid = user.uid;
+        if (user.displayName == null) {
+          const u1 = user.email.substring(0,user.email.indexOf("@"));
+          const uName=u1.charAt(0).toLocaleUpperCase()+u1.slice(1)
+        // console.log(uName);
+          setdisplayName(uName)
+        } else{
+       // console.log(user.displayName);
       setdisplayName(user.displayName)
-      dispatch(SET_ACTIVE_USER({
-        emai:"",
-        userName:"",
-        userID:""
-      }))
-     
-    } else {
-      setdisplayName("")
-    }
-  });
-},[])
+}
+
+
+        dispatch(SET_ACTIVE_USER({
+          email: user.email,
+          userName: user.displayName ? user.displayName: displayName,
+          userID: user.uid,
+        }))
+
+      } else {
+        setdisplayName("")
+      }
+    });
+  }, [])
 
 
   const logoutUser = () => {
@@ -72,7 +80,7 @@ useEffect(()=>{
             </Nav>
             <Nav  >
               <Nav.Link href="login" > Login</Nav.Link>
-              
+
               <Nav.Link href="register" > Register </Nav.Link>
               <Nav.Link href="/home" onClick={logoutUser} >Logout </Nav.Link>
             </Nav>
@@ -81,9 +89,9 @@ useEffect(()=>{
               <Nav.Link href="cart"><BsFillHandbagFill size={30} /><p>0</p></Nav.Link>
               <Nav.Link eventKey={2} href="favorite"> <img src={favImg} alt='fav-icon-error' /> </Nav.Link>
               {/* <Nav.Link eventKey={2} href="account"> <img src={accImg} alt='acc-icon-error' /> </Nav.Link> */}
-              <a href='#'> 
-              <img src={accImg} alt='acc-icon-error' sizes='16'/>
-              Hi, {displayName}
+              <a href='#'>
+                <img src={accImg} alt='acc-icon-error' sizes='16' />
+                Hi, {displayName}
               </a>
 
 

@@ -5,16 +5,21 @@ isLoggedIn:false,
 email:null,
 userName:null,
 userID:null,
-}
+};
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
     SET_ACTIVE_USER:(state,action)=>{
-          console.log((action.payload))
-    }
-  }
+          console.log((action.payload));
+          const {email,userName,userID}=action.payload
+          state.isLoggedIn=true;
+          state.userName=userName;
+          state.email=email;
+          state.userID=userID;
+    },
+  },
 });
 
 export const {SET_ACTIVE_USER} = authSlice.actions
