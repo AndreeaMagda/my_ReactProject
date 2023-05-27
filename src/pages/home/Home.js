@@ -1,6 +1,6 @@
 import React from 'react'
 import hp from '../../Images/title.png'
-import { Col, Row } from 'react-bootstrap'
+import AdminOnlyRoute from '../../components/adminOnlyRoute/AdminOnlyRoute'
 const Home = () => {
   return (
     <React.Fragment>
@@ -17,6 +17,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <AdminOnlyRoute/>
     </React.Fragment>
   )
 }

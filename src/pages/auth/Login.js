@@ -29,7 +29,7 @@ const Login = () => {
                // const user = userCredential.user;
                 setIsLoading(false)
                 toast.success("Login successful :)")
-                navigate('/home')
+                navigate('/')
 
             })
             .catch((error) => { 
@@ -47,7 +47,7 @@ const Login = () => {
        .then((result) => {
         // const user = result.user;
          toast.success("login successfully")
-         navigate("/home")
+         navigate("/")
         
        }).catch((error) => {
         toast.error(error.message)

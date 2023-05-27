@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../redux/slice/authSlice';
 import ShowOnLogin, { ShowOnLogout } from '../hiddenLink/hiddenLink';
+import AdminOnlyRoute from '../adminOnlyRoute/AdminOnlyRoute';
 
 
 function Header() {
@@ -31,17 +32,17 @@ function Header() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         if (user.displayName == null) {
-          const u1 = user.email.substring(0,user.email.indexOf("@"));
-          const uName=u1.charAt(0).toLocaleUpperCase()+u1.slice(1)
+          const u1 = user.email.substring(0, user.email.indexOf("@"));
+          const uName = u1.charAt(0).toLocaleUpperCase() + u1.slice(1)
           setdisplayName(uName)
-        } else{
-      setdisplayName(user.displayName)
-}
+        } else {
+          setdisplayName(user.displayName)
+        }
 
 
         dispatch(SET_ACTIVE_USER({
           email: user.email,
-          userName: user.displayName ? user.displayName: displayName,
+          userName: user.displayName ? user.displayName : displayName,
           userID: user.uid,
         }))
 
@@ -56,7 +57,7 @@ function Header() {
   const logoutUser = () => {
     signOut(auth).then(() => {
       toast.success("Logout successfully...")
-      navigate("/home")
+      navigate("/")
     }).catch((error) => {
       toast.error(error.message);
     });
@@ -78,26 +79,31 @@ function Header() {
             </Nav>
             <Nav  >
               <ShowOnLogout>
-              <Nav.Link href="login" > Login</Nav.Link>
+                <Nav.Link href="login" > Login</Nav.Link>
               </ShowOnLogout>
               <ShowOnLogin>
-              <Nav.Link href="/home" onClick={logoutUser} >Logout </Nav.Link>
+                <Nav.Link href="/home" onClick={logoutUser} >Logout </Nav.Link>
               </ShowOnLogin>
             </Nav>
             <Nav >
-              
+
               <Nav.Link href="cart"><BsFillHandbagFill size={30} /><p>0</p></Nav.Link>
               <ShowOnLogin>
-              <Nav.Link eventKey={2} href="favorite"> <img src={favImg} alt='fav-icon-error' /> </Nav.Link>
-              
-              {/* <Nav.Link eventKey={2} href="account"> <img src={accImg} alt='acc-icon-error' /> </Nav.Link> */}
-              <a href='#home' style={{color: "#ff7722"}}>
-                <img src={accImg} alt='acc-icon-error' sizes='16' />
-                Hi, {displayName}
-              </a>
+                <Nav.Link eventKey={2} href="favorite"> <img src={favImg} alt='fav-icon-error' /> </Nav.Link>
+
+                {/* <Nav.Link eventKey={2} href="account"> <img src={accImg} alt='acc-icon-error' /> </Nav.Link> */}
+                <a href='#home' style={{ color: "#ff7722" }} className='mr-2'>
+                  <img src={accImg} alt='acc-icon-error' sizes='16' className='mr-3' />
+                  Hi, {displayName}
+                </a>
               </ShowOnLogin>
 
 
+            </Nav>
+            <Nav >
+              <AdminOnlyRoute>
+              <button type="button" className="btn btn-secondary ml-5">Admin</button>
+              </AdminOnlyRoute>
             </Nav>
           </Navbar.Collapse>
         </Container>
