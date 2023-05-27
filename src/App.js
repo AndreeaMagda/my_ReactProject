@@ -14,22 +14,22 @@ function App() {
     <Header/>
       <Routes>
         
-         <Route path='/' element={<Home />}/>
+         <Route path='/home' element={<Home />}/>
        
-        <Route path='books' element={<Books />}/>
+        <Route path='/books' element={<Books />}/>
        
-        <Route path='movies' element={<Movies />}/>
-        <Route path='placeS' element={<PlaceToVisit />}/>
-        <Route path='quiz' element={<Quiz/>}/>
-        <Route path='shop' element={<Shop />}/>
-        <Route path='cart' element={<Cart/>}/>
-        <Route path='favorite' element={<Favorite />}/>
-        <Route path='account' element={<Account/>}/>
-        <Route path='oderHistory' element={<OderHistory/>}/>
-        <Route path='admin' element={<Admin/>}/>
-        <Route path='login' element={<Login/>}/>
-        <Route path='register' element={<Register/>}/>
-        <Route path='reset' element={<Reset/>}/>
+        <Route path='/movies' element={<Movies />}/>
+        <Route path='/placeS' element={<PlaceToVisit />}/>
+        <Route path='/quiz' element={<Quiz/>}/>
+        <Route path='/shop' element={<Shop />}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/favorite' element={<Favorite />}/>
+        <Route path='/account' element={<Account/>}/>
+        <Route path='/oderHistory' element={<OderHistory/>}/>
+        <Route path='/admin' element={<Admin/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/reset' element={<Reset/>}/>
       </Routes>
     <Footer/>
    
