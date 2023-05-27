@@ -10,7 +10,7 @@ const AdminOnlyRoute = ({children}) => {
 if(userEmail==="andreeamagda2002@gmail.com"){
     return children
 }
-  return null
+  return (null)
 }
 
 export default AdminOnlyRoute

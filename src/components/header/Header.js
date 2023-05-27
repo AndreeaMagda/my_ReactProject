@@ -10,13 +10,13 @@ import accImg from '../../Images/acc.svg'
 import { BsFillHandbagFill } from 'react-icons/bs'
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../../firebase/config';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../redux/slice/authSlice';
 import ShowOnLogin, { ShowOnLogout } from '../hiddenLink/hiddenLink';
-import AdminOnlyRoute from '../adminOnlyRoute/AdminOnlyRoute';
+import  AdminOnlyRoute  from '../adminOnlyRoute/AdminOnlyRoute';
 
 
 function Header() {
@@ -66,7 +66,7 @@ function Header() {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="home" ><img src={imgLogo} alt='logo err' />Harry Potter</Navbar.Brand>
+          <Navbar.Brand href="/" ><img src={imgLogo} alt='logo err' />Harry Potter</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -82,7 +82,7 @@ function Header() {
                 <Nav.Link href="login" > Login</Nav.Link>
               </ShowOnLogout>
               <ShowOnLogin>
-                <Nav.Link href="/home" onClick={logoutUser} >Logout </Nav.Link>
+                <Nav.Link href="/" onClick={logoutUser} >Logout </Nav.Link>
               </ShowOnLogin>
             </Nav>
             <Nav >
@@ -102,7 +102,9 @@ function Header() {
             </Nav>
             <Nav >
               <AdminOnlyRoute>
-              <button type="button" className="btn btn-secondary ml-5">Admin</button>
+               
+              <button type="button" className="btn btn-secondary ml-5"> <Nav.Link href="admin/home">Admin</Nav.Link></button>
+             
               </AdminOnlyRoute>
             </Nav>
           </Navbar.Collapse>
