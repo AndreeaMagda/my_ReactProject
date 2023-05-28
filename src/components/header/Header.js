@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { REMOVE_ACTIVE_USER, SET_ACTIVE_USER } from '../../redux/slice/authSlice';
 import ShowOnLogin, { ShowOnLogout } from '../hiddenLink/hiddenLink';
-import  AdminOnlyRoute  from '../adminOnlyRoute/AdminOnlyRoute';
+import  AdminOnlyRoute, { AdminOnlyLink }  from '../adminOnlyRoute/AdminOnlyRoute';
 
 
 function Header() {
@@ -101,11 +101,12 @@ function Header() {
 
             </Nav>
             <Nav >
-              <AdminOnlyRoute>
+              
                
-              <button type="button" className="btn btn-secondary ml-5"> <Nav.Link href="admin/home">Admin</Nav.Link></button>
              
-              </AdminOnlyRoute>
+                <AdminOnlyLink><Nav.Link href="admin/home"> <button type="button" className="btn btn-secondary ml-5">Admin  </button></Nav.Link></AdminOnlyLink>
+            
+             
             </Nav>
           </Navbar.Collapse>
         </Container>
