@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import Navbar from '../navbar/Navbar';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { db, storage } from '../../../firebase/config';
 import { toast } from 'react-toastify';
-import { Timestamp, addDoc, collection } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { Timestamp, addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
+import { selectProducts } from '../../../redux/slice/productSlice';
+import { useSelector } from 'react-redux';
 
 const categories = [
   { id: 1, name: "Clothes" },
@@ -24,16 +26,21 @@ const initialState = {
 
 };
 const AddProduct = () => {
-  const [product, setProduct] = useState(
-    {
-      ...initialState
-
-    }
+  const { id } = useParams();
+  const products = useSelector(selectProducts);  
+  const productEdit = products.find((item) => item.id === id);
+  const [product, setProduct] = useState(() => {
+    const newState = detectForm(id, { ...initialState }, productEdit);
+    return newState;
+  }
   )
 
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+ 
+
+ //console.log(productEdit);
 
   function detectForm(id, f1, f2) {
     if (id === "ADD") {
@@ -96,15 +103,39 @@ const AddProduct = () => {
       toast.error(error.message);
     }
   }
+  const editProduct = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
 
+    if (product.imageURL !== productEdit.imageURL) {
+      const storageRef = ref(storage, productEdit.imageURL);
+      deleteObject(storageRef);
+    }
+
+    try {
+      setDoc(doc(db, "products", id), {
+        name: product.name,
+        imageURL: product.imageURL,
+        price: Number(product.price),
+        category: product.category,
+        editedAt: Timestamp.now().toDate(),
+      });
+      setIsLoading(false);
+      toast.success("Product Edited Successfully");
+      navigate("/admin/all-products");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
+  };
   return (
     <>
       {isLoading && <Loader />}
       <div>
 
-        <h1>Add new product</h1>
+       <h2>{detectForm(id, "Add New Product", "Edit Product")}</h2>
 
-        <form onSubmit={addProduct}>
+        <form onSubmit={detectForm(id, addProduct, editProduct)}>
           <div className="form-row">
             <div className="col-md-4 ">
               <label>Insert product name</label>
@@ -162,7 +193,8 @@ const AddProduct = () => {
               </div>
 
               <br /> <br />
-              <button type="submit" className="btn btn-success">Add product</button>
+              <button type="submit" className="btn btn-success">
+               { detectForm(id, "Add Product", "Edit Product")}</button>
 
             </div>
 
