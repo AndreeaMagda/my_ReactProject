@@ -11,13 +11,13 @@ const sidebarNavItems = [
     },
     {
         display: 'All Products',
-        icon: <i class='bx bxs-magic-wand' ></i>,
+        icon: <i className='bx bxs-magic-wand' ></i>,
         to: '"admin/all-product',
         section: 'all-products'
     },
     {
         display: 'Add products',
-        icon: <i class='bx bx-add-to-queue'  ></i>,
+        icon: <i className='bx bx-add-to-queue'  ></i>,
         to: 'admin/add-product',
         section: 'add'
     },
