@@ -1,12 +1,13 @@
-import { collection, limit, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { collection, deleteDoc, doc, limit, onSnapshot, orderBy, query } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import { db } from '../../../firebase/config'
+import { db, storage } from '../../../firebase/config'
 import styles from '../viewProduct/ViewProduct.module.scss'
 import { Loader } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-
+import { deleteObject, ref } from 'firebase/storage'
+import Notiflix from "notiflix"
 
 const ViewProduct= () => {
 const [products,setProducts]=useState([])
@@ -43,7 +44,39 @@ const getProducts=()=>{
 }
 }
 
+const confirmDelete = (id, imageURL) => {
+  Notiflix.Confirm.show(
+    "Delete Product!!!",
+    "You are about to delete this product",
+    "Delete",
+    "Cancel",
+    function okCb() {
+      deleteProduct(id, imageURL);
+    },
+    function cancelCb() {
+      console.log("Delete Canceled");
+    },
+    {
+      width: "320px",
+      borderRadius: "3px",
+      titleColor: "orangered",
+      okButtonBackground: "#6188e8",
+      cssAnimationStyle: "zoom",
+    }
+  );
+};
 
+const deleteProduct = async (id, imageURL) => {
+  try {
+    await deleteDoc(doc(db, "products", id));
+
+    const storageRef = ref(storage, imageURL);
+    await deleteObject(storageRef);
+    toast.success("Product deleted successfully.");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
   return (
     <>
      
@@ -82,14 +115,14 @@ const getProducts=()=>{
                     <td>{category}</td>
                     <td>{`$${price}`}</td>
                      <td className={styles.icons}>
-                      <Link to="/admin/add-product">
+                      <Link to="admin/add-product">
                         <FaEdit size={20} color="blue" />
                       </Link>
                       &nbsp;
                       <FaTrashAlt
                         size={18}
                         color="red"
-                        //onClick={() => confirmDelete(id, imageURL)}
+                        onClick={() => confirmDelete(id, imageURL)}
                       />
                     </td> 
                   </tr>
