@@ -12,7 +12,7 @@ const sidebarNavItems = [
     {
         display: 'All Products',
         icon: <i className='bx bxs-magic-wand' ></i>,
-        to: '"admin/all-product',
+        to: 'admin/all-product',
         section: 'all-products'
     },
     {

@@ -1,49 +1,102 @@
 import { useState } from 'react'
 import Navbar from '../navbar/Navbar';
-import { ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from '../../../firebase/config';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { db, storage } from '../../../firebase/config';
+import { toast } from 'react-toastify';
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import {  useNavigate } from 'react-router-dom';
+import { Loader } from 'semantic-ui-react';
 
-const AddProduct = () => {
-  const categories = [
-    { id: 1, name: "Chlotes" },
-    { id: 2, name: "Toys" },
-    { id: 3, name: "Jewelry" },
+const categories = [
+  { id: 1, name: "Chlotes" },
+  { id: 2, name: "Toys" },
+  { id: 3, name: "Jewelry" },
+
+];
+
+const initialState = {
+  name: "",
+  imageURL: "",
+  price: 0,
+  category: "",
  
-  ];
+};
+const AddProduct = () => {
   const [product, setProduct] = useState(
     {
-      name: "",
-      imageURL: "",
-      price: 0,
-      category: "",
-
+     ...initialState
+  
     }
   )
-function detectForm(id, f1, f2) {
+
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  function detectForm(id, f1, f2) {
     if (id === "ADD") {
       return f1;
     }
     return f2;
   }
 
-  const handleInputChange = (e) => { 
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
   const handleImageChange = (e) => {
-const file=e.target.files[0]
-//console.log(file);
-const storageRef = ref(storage, `harryShop/${Date.now}${file.name}`);
-const uploadTask = uploadBytesResumable(storageRef, file);
+    const file = e.target.files[0]
+    //console.log(file);
+    const storageRef = ref(storage, `harryShop/${Date.now}${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
 
-   };
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgress(progress);
+      },
+      (error) => {
+        toast.error(error.message);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setProduct({ ...product, imageURL: downloadURL });
+          toast.success("Image uploaded successfully.");
+        });
+      }
+    );
+  };
 
   const addProduct = (e) => {
     e.preventDefault();
-     console.log(product);
-  //  setIsLoading(true);
+   // console.log(product);
+      setIsLoading(true);
+    try {
+      const docRef = addDoc(collection(db, "products"), {
+        name: product.name,
+        imageURL: product.imageURL,
+        price: Number(product.price),
+        category: product.category,
+        createdAt: Timestamp.now().toDate(),
+      });
+      setIsLoading(false);
+      setUploadProgress(0);
+      setProduct({ ...initialState });
+
+      toast.success("Product uploaded successfully.");
+      navigate("admin/all-product");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+    }
   }
+
   return (
+    <>
+    {isLoading &&<Loader/>}
     <div>
 
       <h1>Add new product</h1>
@@ -54,7 +107,7 @@ const uploadTask = uploadBytesResumable(storageRef, file);
             <label>Insert product name</label>
             <input type="text" className="form-control" placeholder="Product name"
               required name='name'
-               value={product.name}
+              value={product.name}
               onChange={(e) => handleInputChange(e)} />
             <br />
 
@@ -63,9 +116,11 @@ const uploadTask = uploadBytesResumable(storageRef, file);
             <div className="custom-file">
               <input type="file" accept="image/*" className="custom-file-input" id="validatedCustomFile"
                 name="image" onChange={(e) => handleImageChange(e)} />
+
+
               <input type="text" className="form-control" placeholder="image URL"
-               // required
-                 name='imageURL' value={product.imageURL}
+                // required
+                name='imageURL' value={product.imageURL}
                 onChange={(e) => handleInputChange(e)} />
               <label className="custom-file-label" htmlFor="validatedCustomFile">Choose file...</label>
               <div className="invalid-feedback">Example invalid custom file feedback</div>
@@ -95,13 +150,14 @@ const uploadTask = uploadBytesResumable(storageRef, file);
 
             <br /> <br />
             <button type="submit" className="btn btn-success">Add product</button>
-            
+
           </div>
 
         </div>
 
       </form>
     </div>
+    </>
   )
 }
 
