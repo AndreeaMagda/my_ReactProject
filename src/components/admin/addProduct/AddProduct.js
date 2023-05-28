@@ -149,12 +149,12 @@ const AddProduct = () => {
                   );
                 })}
               </select> <br /><br />
-              <div class="input-group">
+              <div className="input-group">
 
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Description </span>
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Description </span>
                 </div>
-                <textarea class="form-control" aria-label="With textarea"
+                <textarea className="form-control" aria-label="With textarea"
                   name="desc"
                   required
                   value={product.desc}
