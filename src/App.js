@@ -33,7 +33,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/reset' element={<Reset />} />
 
-        <Route path='/admin/home/*' element={
+        <Route path='/admin/*' element={
           <AdminOnlyRoute>
             <Admin />
           </AdminOnlyRoute>} />

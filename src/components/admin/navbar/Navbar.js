@@ -12,19 +12,19 @@ const sidebarNavItems = [
     {
         display: 'All Products',
         icon: <i className='bx bxs-magic-wand' ></i>,
-        to: 'admin/all-products',
+        to: '/admin/all-products',
         section: 'all-products'
     },
     {
         display: 'Add products',
         icon: <i className='bx bx-add-to-queue'  ></i>,
-        to: 'admin/add-product',
+        to: '/admin/add-product/ADD',
         section: 'add'
     },
     {
         display: 'Orders',
         icon: <i className='bx bx-receipt'></i>,
-        to: 'admin/orders',
+        to: '/admin/orders',
         section: 'oder'
     },
   

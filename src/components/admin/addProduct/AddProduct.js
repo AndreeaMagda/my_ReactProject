@@ -90,7 +90,7 @@ const AddProduct = () => {
       setProduct({ ...initialState });
 
       toast.success("Product uploaded successfully.");
-      navigate("admin/all-product");
+      navigate("/admin/all-products");
     } catch (error) {
       setIsLoading(false);
       toast.error(error.message);
