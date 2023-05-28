@@ -66,15 +66,12 @@ function Header() {
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/" ><img src={imgLogo} alt='logo err' />Harry Potter</Navbar.Brand>
+          <Navbar.Brand href="/" ><img src={imgLogo} alt='logo err mr-3' />Harry Potter</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="shop" className={activeLink}>Shop</Nav.Link>
-              <Nav.Link href="books">Books</Nav.Link>
-              <Nav.Link href="movies">Movies</Nav.Link>
-              <Nav.Link href="places">Place To Visit</Nav.Link>
-              <Nav.Link href="quiz">Quiz</Nav.Link>
+        
 
             </Nav>
             <Nav  >

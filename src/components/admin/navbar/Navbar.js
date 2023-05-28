@@ -1,47 +1,85 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { selectUserName } from "../../../redux/slice/authSlice";
-import styles from "./Navbar.module.scss";
-import { FaUserCircle } from "react-icons/fa";
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Navbar.scss';
 
-const activeLink = ({ isActive }) => (isActive ? `${styles.active}` : "");
+const sidebarNavItems = [
+    {
+        display: 'Home',
+        icon: <i className='bx bx-home'></i>,
+        to: '/admin/home',
+        section: ''
+    },
+    {
+        display: 'All Products',
+        icon: <i class='bx bxs-magic-wand' ></i>,
+        to: '"admin/all-product',
+        section: 'all-products'
+    },
+    {
+        display: 'Add products',
+        icon: <i class='bx bx-add-to-queue'  ></i>,
+        to: 'admin/add-product',
+        section: 'add'
+    },
+    {
+        display: 'Orders',
+        icon: <i className='bx bx-receipt'></i>,
+        to: 'admin/orders',
+        section: 'oder'
+    },
+  
+]
 
 const Navbar = () => {
-  const userName = useSelector(selectUserName);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [stepHeight, setStepHeight] = useState(0);
+    const sidebarRef = useRef();
+    const indicatorRef = useRef();
+    const location = useLocation();
 
-  return (
-    <div className={styles.navbar}>
-      <div className={styles.user}>
-        <FaUserCircle size={40} color="#fff" />
-        <h4>{userName}</h4>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <NavLink to="/admin/home" className={activeLink}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="admin/all-products" className={activeLink}>
-              All Products
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="admin/add-product" className={activeLink}>
-              Add Product
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="admin/orders" className={activeLink}>
-              Orders
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  );
+    useEffect(() => {
+        setTimeout(() => {
+            const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
+            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
+            setStepHeight(sidebarItem.clientHeight);
+        }, 50);
+    }, []);
+
+    // change active index
+    useEffect(() => {
+        const curPath = window.location.pathname.split('/')[1];
+        const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
+        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
+    }, [location]);
+
+    return <div className='sidebar'>
+        <div className="sidebar__logo">
+           
+        </div>
+        <div ref={sidebarRef} className="sidebar__menu">
+            <div
+                ref={indicatorRef}
+                className="sidebar__menu__indicator"
+                style={{
+                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
+                }}
+            ></div>
+            {
+                sidebarNavItems.map((item, index) => (
+                    <Link to={item.to} key={index}>
+                        <div className={`sidebar__menu__item ${activeIndex === index ? 'active' : ''}`}>
+                            <div className="sidebar__menu__item__icon">
+                                {item.icon}
+                            </div>
+                            <div className="sidebar__menu__item__text">
+                                {item.display}
+                            </div>
+                        </div>
+                    </Link>
+                ))
+            }
+        </div>
+    </div>;
 };
 
 export default Navbar;

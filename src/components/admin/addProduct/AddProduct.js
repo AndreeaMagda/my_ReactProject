@@ -22,12 +22,12 @@ const AddProduct = () => {
      <h1>Add new product</h1> 
 
      <form>
-  <div className="form-group">
-    <label htmlFor="formGroupExampleInput">Product name</label>
-    <input type="text" className="form-control" id="formGroupExampleInput" 
-    placeholder="Product name"
+     <div className="form-row">
+    <div className="col-md-4 ">
+      <input type="text" class="form-control" placeholder="First name"
     required name='name' value={product.name}
     onChange={(e)=>handleInputChange(e)}/>
+  </div>
   </div>
  
 </form>

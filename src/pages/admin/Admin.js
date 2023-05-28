@@ -5,16 +5,23 @@ import HomeA from '../../components/admin/home/Home'
 import ViewProduct from '../../components/admin/viewProduct/ViewProduct'
 import Orders from '../../components/admin/orders/Orders'
 import AddProduct from '../../components/admin/addProduct/AddProduct';
-import styles from './Admin.module.scss'
-
+//import styles from './Admin.module.scss'
+import 'boxicons/css/boxicons.min.css'
+import '../../App.scss'
+import { Outlet } from "react-router-dom";
 const Admin = () => {
   return (
     <>
-    <div className={styles.admin}>
-      <div className={styles.navbar}>
-        <Navbar/ >
+    <div >
+      <div >
+      <div style={{
+        padding: '50px 0px 0px 370px'
+    }}>
+        <Navbar />
+        <Outlet/>
+            
      
-      <div className={styles.content}>
+      <div >
         <Routes>
 
           <Route path="/admin/home/*" element={<HomeA />} />
@@ -24,7 +31,7 @@ const Admin = () => {
 
         </Routes>
       </div>
-
+</div>;
       </div>
     </div>
     </>
