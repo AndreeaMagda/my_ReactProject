@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Navbar from '../navbar/Navbar';
+import { ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../../../firebase/config';
 
 const AddProduct = () => {
   const categories = [
@@ -12,7 +14,7 @@ const AddProduct = () => {
     {
       name: "",
       imageURL: "",
-      price: null,
+      price: 0,
       category: "",
 
     }
@@ -28,7 +30,14 @@ function detectForm(id, f1, f2) {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
-  const handleImageChange = (e) => { };
+  const handleImageChange = (e) => {
+const file=e.target.files[0]
+//console.log(file);
+const storageRef = ref(storage, `harryShop/${Date.now}${file.name}`);
+const uploadTask = uploadBytesResumable(storageRef, file);
+
+   };
+
   const addProduct = (e) => {
     e.preventDefault();
      console.log(product);
