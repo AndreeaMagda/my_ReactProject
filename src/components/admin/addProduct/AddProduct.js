@@ -8,7 +8,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Loader } from 'semantic-ui-react';
 import { selectProducts } from '../../../redux/slice/productSlice';
 import { useSelector } from 'react-redux';
-
+import {imhAdd} from '../../../Images/hadd.png'
+import { Col, Row } from 'react-bootstrap';
 const categories = [
   { id: 1, name: "Clothes" },
   { id: 2, name: "Toys" },
@@ -198,9 +199,13 @@ const AddProduct = () => {
 
             </div>
 
-          </div>
+           
+              
+       
+            </div>
 
         </form>
+
       </div>
     </>
   )

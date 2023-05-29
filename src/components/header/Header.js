@@ -70,7 +70,7 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="shop" className={activeLink}>Shop</Nav.Link>
+         
         
 
             </Nav>
@@ -101,7 +101,7 @@ function Header() {
               
                
              
-                <AdminOnlyLink><Nav.Link href="admin/home"> <button type="button" className="btn btn-secondary ml-5">Admin  </button></Nav.Link></AdminOnlyLink>
+                <AdminOnlyLink><Nav.Link href="/admin/all-products"> <button type="button" className="btn btn-secondary ml-5">Admin  </button></Nav.Link></AdminOnlyLink>
             
              
             </Nav>

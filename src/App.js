@@ -1,7 +1,7 @@
 
 import { Routes, Route } from 'react-router-dom'
 //pages
-import { Account, Admin, Books, Cart, Favorite, Home, Movies, PlaceToVisit, Quiz, Shop, OderHistory, Login, Register, Reset } from '../src/pages/index'
+import { Account, Admin, Books, Cart, Favorite, Home, Movies, PlaceToVisit, Quiz, Shop, OderHistory, Login, Register, Reset } from '../src/pages/'
 //components
 import { Header, Footer } from './components/index';
 import { ToastContainer } from 'react-toastify';

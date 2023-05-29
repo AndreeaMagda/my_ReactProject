@@ -3,12 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navbar.scss';
 
 const sidebarNavItems = [
-    {
-        display: 'Home',
-        icon: <i className='bx bx-home'></i>,
-        to: '/admin/home',
-        section: ''
-    },
+    
     {
         display: 'All Products',
         icon: <i className='bx bxs-magic-wand' ></i>,
@@ -21,12 +16,7 @@ const sidebarNavItems = [
         to: '/admin/add-product/ADD',
         section: 'add'
     },
-    {
-        display: 'Orders',
-        icon: <i className='bx bx-receipt'></i>,
-        to: '/admin/orders',
-        section: 'oder'
-    },
+    
   
 ]
 
