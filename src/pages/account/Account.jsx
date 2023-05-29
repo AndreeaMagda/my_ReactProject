@@ -1,11 +1,11 @@
 import React from 'react'
 
-const movies = () => {
+function Account(){
   return (
     <div>
-      
+     Account
     </div>
   )
 }
 
-export default movies
+export default Account

@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Cart = () => {
+function Favorite (){
   return (
     <div>
-      
+      Favorites
     </div>
   )
 }
 
-export default Cart
+export default Favorite

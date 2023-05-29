@@ -3,7 +3,7 @@ import Navbar from '../../components/admin/navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import HomeA from '../../components/admin/home/Home'
 import ViewProduct from '../../components/admin/viewProduct/ViewProduct'
-import Orders from '../../components/admin/orders/Orders'
+
 import AddProduct from '../../components/admin/addProduct/AddProduct';
 //import styles from './Admin.module.scss'
 import 'boxicons/css/boxicons.min.css'
@@ -27,7 +27,7 @@ const Admin = () => {
           <Route path="home" element={<HomeA />} />
           <Route path="all-products" element={<ViewProduct />} />
           <Route path="add-product/:id" element={<AddProduct/>} />
-          <Route path="orders" element={<Orders />} />
+     
 
         </Routes>
       </div>
