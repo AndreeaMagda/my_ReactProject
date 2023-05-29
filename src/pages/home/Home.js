@@ -31,8 +31,27 @@ const Home = () => {
             <div className='row'>
 
               <div className='col  '>
-                <img className='img-thumbnail' src={hpAdd} alt="errimglg " width="1500" />
-                <a href="/admin/all-products" class="btn btn-info btn-lg btn-block center " role="button" aria-disabled="true">Go to products</a>
+              <Card sx={{ maxWidth: 1505, marginRight: '10px' }}>
+    {/* Al doilea card */}
+    <CardActionArea>
+      <CardMedia
+        component="img"
+        height="540"
+        image={hpAdd}
+        alt="green iguana"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div" className='text-center'>
+        Welcome 
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+        Welcome to "Wand Wonders," the ultimate Harry Potter shop. Immerse yourself in the enchanting world of Hogwarts with authentic merchandise, magical wands, spellbooks, and potions. Find your house,
+         choose your wand, and indulge in the wonders of the wizarding world.
+         <a href="/admin/all-products" class="btn btn-secondary btn-sm " role="button" >Go to products</a>
+        </Typography>
+      </CardContent>
+    </CardActionArea>
+  </Card>
 
               </div>
             </div>
@@ -170,6 +189,10 @@ const Home = () => {
       </CardContent>
     </CardActionArea>
   </Card>
+
+
+
+ 
 
 </div>
     </React.Fragment>
